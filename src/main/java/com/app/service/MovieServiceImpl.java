@@ -2,10 +2,11 @@ package com.app.service;
 
 import com.app.exception.MovieNotFoundException;
 import com.app.entity.Movie;
-import com.app.model.MovieRequestDTO;
+import com.app.model.movie.MovieRequestDTO;
 import com.app.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,6 +30,7 @@ public class MovieService {
         return repository.save(movie);
     }
 
+    @Transactional
     public Movie updateMovie(Long movieId, MovieRequestDTO movieRequestDTO) {
 
         Movie movie = repository.findById(movieId)

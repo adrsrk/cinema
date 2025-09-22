@@ -2,10 +2,10 @@ package com.app.controller;
 
 import com.app.entity.Movie;
 import com.app.model.MessageResponseDTO;
-import com.app.model.MovieCreateResponseDTO;
-import com.app.model.MovieRequestDTO;
-import com.app.model.MovieResponseDTO;
-import com.app.service.MovieService;
+import com.app.model.MessageCreateResponseDTO;
+import com.app.model.movie.MovieRequestDTO;
+import com.app.model.movie.MovieResponseDTO;
+import com.app.service.MovieServiceImpl;
 import com.app.util.MovieMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MovieController {
 
-    private final MovieService service;
+    private final MovieServiceImpl service;
     private final MovieMapper mapper;
 
     @GetMapping
@@ -40,13 +40,13 @@ public class MovieController {
     }
 
     @PostMapping
-    public ResponseEntity<MovieCreateResponseDTO> createMovie(@Valid @RequestBody MovieRequestDTO request) {
+    public ResponseEntity<MessageCreateResponseDTO> createMovie(@Valid @RequestBody MovieRequestDTO request) {
         Movie movie = mapper.toEntity(request);
         Movie savedMovie = service.createMovie(movie);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(new MovieCreateResponseDTO("Фильм успешно создан", savedMovie.getId()));
+                .body(new MessageCreateResponseDTO("Фильм успешно создан", savedMovie.getId()));
     }
 
     @PutMapping("/{id}")

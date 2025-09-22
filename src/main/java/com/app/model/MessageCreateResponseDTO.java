@@ -1,6 +1,6 @@
-package com.app.model.movie;
+package com.app.model;
 
-public record MovieCreateResponseDTO(
+public record MessageCreateResponseDTO(
         String message,
         Long id
 ) {

@@ -1,4 +1,4 @@
-package com.app.model;
+package com.app.model.movie;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -6,16 +6,16 @@ import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.URL;
 
 public record MovieRequestDTO(
-        @NotBlank (message = "Please indicate the title")
-        @Size (max = 255, message = "title must be less than 255 characters")
+        @NotBlank (message = "Пожалуйста, укажите название")
+        @Size (max = 255, message = "Название должно быть не более 255 символов")
         String title,
-        @NotBlank (message = "Please indicate the description")
-        @Size(max = 1000, message = "description must be less than 1000 characters")
+        @NotBlank (message = "Пожалуйста, укажите описание")
+        @Size(max = 1000, message = "Описание должно быть не более 1000 символов")
         String description,
-        @Positive (message = "Please indicate the duration (must be > 0)")
+        @Positive (message = "Пожалуйста, укажите длительность (должна быть > 0)")
         int duration,
-        @NotBlank (message = "Please indicate the posterUrl")
-        @URL(message = "posterUrl must be a valid URL")
+        @NotBlank (message = "Пожалуйста, укажите URL постера")
+        @URL(message = "URL постера должен быть корректным")
         String posterUrl
 ) {
 }

@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "2b4af37f-6887-49e4-bb39-3a7df0fdcdcf",
+		"name": "Cinema - Movie End Points",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41542323"
+	},
+	"item": [
+		{
+			"name": "GetAllMovies",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ0ZXN0dXNlckBlbWFpbC5reiIsImlhdCI6MTc1ODUzODI2NiwiZXhwIjoxNzU4NTQxODY2fQ.A3AlcqN7IiXMMys97_SclzzYFWx0Ahko2Yn0qJRq_Ws",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/movie",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetMovieById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInN1YiI6InRlc3R1c2VyQGVtYWlsLmt6IiwiaWF0IjoxNzU4NTI5MTY0LCJleHAiOjE3NTg1MzI3NjR9.fuNvSZIcgWiQkIzHBlIX1prju5scwi1oGyC9o220RW4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/movie/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"movie",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateMovie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ0ZXN0dXNlckBlbWFpbC5reiIsImlhdCI6MTc1ODU2NjQ1NiwiZXhwIjoxNzU4NTcwMDU2fQ.n-J67kdv5hrRS_Y1WoqBr1gSTYCvFb0Xj7ll9ahn-wA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"title\" : \"testtitle1\",\n \"description\" : \"testdescription1\",\n \"duration\" : \"120\",\n \"posterUrl\" : \"https://test.com1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/movie",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateMovie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInN1YiI6InRlc3R1c2VyQGVtYWlsLmt6IiwiaWF0IjoxNzU4NTI5MTY0LCJleHAiOjE3NTg1MzI3NjR9.fuNvSZIcgWiQkIzHBlIX1prju5scwi1oGyC9o220RW4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"title\" : \"testtitle01\",\n \"description\" : \"testdescription01\",\n \"duration\" : \"120\",\n \"posterUrl\" : \"testposter01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/movie/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"movie",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteMovie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInN1YiI6InRlc3R1c2VyQGVtYWlsLmt6IiwiaWF0IjoxNzU4NTI5MTY0LCJleHAiOjE3NTg1MzI3NjR9.fuNvSZIcgWiQkIzHBlIX1prju5scwi1oGyC9o220RW4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/movie/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"movie",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "7df1510e-dbb5-4497-ae1d-5d07d9831249",
+		"name": "Cinema - Hall End Points",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41542323"
+	},
+	"item": [
+		{
+			"name": "CreateHall",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ0ZXN0dXNlckBlbWFpbC5reiIsImlhdCI6MTc1ODU2NjQ1NiwiZXhwIjoxNzU4NTcwMDU2fQ.n-J67kdv5hrRS_Y1WoqBr1gSTYCvFb0Xj7ll9ahn-wA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"astana\",\n    \"rows\" : \"10\",\n    \"seatsPerRow\" : \"12\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/hall",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"hall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetHallById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ0ZXN0dXNlckBlbWFpbC5reiIsImlhdCI6MTc1ODU2NjQ1NiwiZXhwIjoxNzU4NTcwMDU2fQ.n-J67kdv5hrRS_Y1WoqBr1gSTYCvFb0Xj7ll9ahn-wA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/hall/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"hall",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllHalls",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ0ZXN0dXNlckBlbWFpbC5reiIsImlhdCI6MTc1ODUzODI2NiwiZXhwIjoxNzU4NTQxODY2fQ.A3AlcqN7IiXMMys97_SclzzYFWx0Ahko2Yn0qJRq_Ws",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/hall",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"hall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateHall",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ0ZXN0dXNlckBlbWFpbC5reiIsImlhdCI6MTc1ODUzODI2NiwiZXhwIjoxNzU4NTQxODY2fQ.A3AlcqN7IiXMMys97_SclzzYFWx0Ahko2Yn0qJRq_Ws",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"akotbe\",\n    \"rows\" : \"10\",\n    \"seatsPerRow\" : \"12\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/hall/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"hall",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteHall",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ0ZXN0dXNlckBlbWFpbC5reiIsImlhdCI6MTc1ODUzODI2NiwiZXhwIjoxNzU4NTQxODY2fQ.A3AlcqN7IiXMMys97_SclzzYFWx0Ahko2Yn0qJRq_Ws",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/hall/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"hall",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

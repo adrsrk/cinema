@@ -70,4 +70,13 @@ public class MovieServiceImpl implements MovieService {
 
         repository.deleteById(movieId);
     }
+
+    public List<Movie> searchMovies(String query) {
+
+        if (query == null || query.isEmpty()) {
+            return repository.findAll();
+        }
+
+        return repository.findByTitleContainingIgnoreCase(query);
+    }
 }

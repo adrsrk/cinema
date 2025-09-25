@@ -24,11 +24,22 @@ public class MovieController {
     private final MovieMapper mapper;
 
     @GetMapping
-    public ResponseEntity<List<MovieResponseDTO>> getAllMovies() {
-        List<MovieResponseDTO> movies = service.getAllMovies()
-                .stream()
-                .map(mapper :: toDto)
-                .toList();
+    public ResponseEntity<List<MovieResponseDTO>> getMovies(@RequestParam(required = false, name = "query") String query) {
+        List<MovieResponseDTO> movies;
+
+        if (query != null && !query.isEmpty()) {
+            movies = service.getAllMovies()
+                    .stream()
+                    .map(mapper::toDto)
+                    .toList();
+
+        } else {
+
+            movies = service.searchMovies(query)
+                    .stream()
+                    .map(mapper::toDto)
+                    .toList();
+        }
 
         return ResponseEntity.ok(movies);
     }

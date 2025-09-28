@@ -2,15 +2,14 @@ package com.app.service;
 
 import com.app.entity.Hall;
 import com.app.model.hall.HallRequestDTO;
-import com.app.model.hall.HallResponseDTO;
+import org.springframework.data.domain.Page;
 
-import java.util.List;
 
 public interface HallService {
 
     Hall createHall(Hall hall);
 
-    List<Hall> getAllHalls();
+    Page<Hall> getAllHallsPageable(int page, int size);
 
     Hall getHallById(Long hallId);
 

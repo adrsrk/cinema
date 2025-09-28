@@ -9,11 +9,11 @@ import com.app.service.MovieServiceImpl;
 import com.app.util.MovieMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/movie")
@@ -24,24 +24,14 @@ public class MovieController {
     private final MovieMapper mapper;
 
     @GetMapping
-    public ResponseEntity<List<MovieResponseDTO>> getMovies(@RequestParam(required = false, name = "query") String query) {
-        List<MovieResponseDTO> movies;
+    public ResponseEntity<Page<MovieResponseDTO>> getMovies(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(required = false, name = "query") String query) {
 
-        if (query != null && !query.isEmpty()) {
-            movies = service.getAllMovies()
-                    .stream()
-                    .map(mapper::toDto)
-                    .toList();
-
-        } else {
-
-            movies = service.searchMovies(query)
-                    .stream()
-                    .map(mapper::toDto)
-                    .toList();
-        }
-
-        return ResponseEntity.ok(movies);
+        Page<Movie> movies = service.searchMovies(page, size, query);
+        Page<MovieResponseDTO> movieDtoByPage = movies.map(mapper::toDto);
+        return ResponseEntity.ok(movieDtoByPage);
     }
 
     @GetMapping("/{id}")

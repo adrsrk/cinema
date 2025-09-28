@@ -5,11 +5,10 @@ import com.app.exception.HallNotFoundException;
 import com.app.model.hall.HallRequestDTO;
 import com.app.repository.HallRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -24,8 +23,8 @@ public class HallServiceImpl implements HallService {
     }
 
     @Override
-    public List<Hall> getAllHalls() {
-        return hallRepository.findAll();
+    public Page<Hall> getAllHallsPageable(int page, int size) {
+        return hallRepository.findAll(PageRequest.of(page, size));
     }
 
     @Override
@@ -52,7 +51,6 @@ public class HallServiceImpl implements HallService {
         hall.setName(hallRequestDTO.name());
         hall.setRows(hallRequestDTO.rows());
         hall.setSeatsPerRow(hallRequestDTO.seatsPerRow());
-        hall.setUpdatedAt(LocalDateTime.now());
 
         return hallRepository.save(hall);
     }

@@ -9,11 +9,10 @@ import com.app.service.HallService;
 import com.app.util.HallMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/hall")
@@ -24,14 +23,14 @@ public class HallController {
     private final HallMapper mapper;
 
     @GetMapping
-    public ResponseEntity<List<HallResponseDTO>> getAllHalls() {
+    public ResponseEntity<Page<HallResponseDTO>> getAllHalls(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size
+    ) {
+        Page<Hall> halls = hallService.getAllHallsPageable(page, size);
+        Page<HallResponseDTO> hallsByPage = halls.map(mapper::toDTO);
 
-        List<HallResponseDTO> halls = hallService.getAllHalls()
-                .stream()
-                .map(mapper :: toDTO)
-                .toList();
-
-        return ResponseEntity.ok(halls);
+        return ResponseEntity.ok(hallsByPage);
     }
 
     @GetMapping("/{id}")

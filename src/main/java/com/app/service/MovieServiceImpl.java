@@ -5,11 +5,10 @@ import com.app.entity.Movie;
 import com.app.model.movie.MovieRequestDTO;
 import com.app.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 /**
         * Сервис для управления фильмами.
@@ -22,8 +21,8 @@ public class MovieServiceImpl implements MovieService {
     private final MovieRepository repository;
 
     @Override
-    public List<Movie> getAllMovies() {
-        return repository.findAll();
+    public Page<Movie> getAllMoviesPageable(int page, int size) {
+        return repository.findAll(PageRequest.of(page, size));
     }
 
     @Override
@@ -56,7 +55,6 @@ public class MovieServiceImpl implements MovieService {
         movie.setDescription(movieRequestDTO.description());
         movie.setDuration(movieRequestDTO.duration());
         movie.setPosterUrl(movieRequestDTO.posterUrl());
-        movie.setUpdatedAt(LocalDateTime.now());
 
         return repository.save(movie);
     }
@@ -71,12 +69,13 @@ public class MovieServiceImpl implements MovieService {
         repository.deleteById(movieId);
     }
 
-    public List<Movie> searchMovies(String query) {
+    @Override
+    public Page<Movie> searchMovies(int page, int size, String query) {
 
         if (query == null || query.isEmpty()) {
-            return repository.findAll();
+            return getAllMoviesPageable(page, size);
         }
 
-        return repository.findByTitleContainingIgnoreCase(query);
+        return repository.findByTitleContainingIgnoreCase(query, PageRequest.of(page, size));
     }
 }

@@ -14,7 +14,7 @@ public interface MovieMapper {
     MovieResponseDTO toDto(Movie movie);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "createdAt", expression = "java(LocalDateTime.now())")
+    @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     Movie toEntity(MovieRequestDTO dto);
 }

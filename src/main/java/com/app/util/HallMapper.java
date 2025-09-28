@@ -14,7 +14,7 @@ public interface HallMapper {
     HallResponseDTO toDTO(Hall hall);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "createdAt", expression = "java(LocalDateTime.now())")
+    @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     Hall toEntity(HallRequestDTO dto);
 }

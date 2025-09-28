@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 @Entity
+@Table(name = "session")
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,6 +27,4 @@ public class Session extends BaseEntity {
     private Instant startTime;
 
     private BigDecimal price;
-
-
 }

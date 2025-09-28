@@ -1,6 +1,6 @@
 package com.app.model.movie;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 public record MovieResponseDTO(
         Long id,
@@ -8,6 +8,6 @@ public record MovieResponseDTO(
         String description,
         int duration,
         String posterUrl,
-        LocalDateTime createdAt
+        Instant createdAt
 ) {
 }

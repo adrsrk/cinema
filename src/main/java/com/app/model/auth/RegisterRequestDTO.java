@@ -1,6 +1,5 @@
 package com.app.model.auth;
 
-import com.app.entity.enums.Role;
 import jakarta.validation.constraints.*;
 
 public record RegisterRequestDTO(
@@ -14,9 +13,6 @@ public record RegisterRequestDTO(
                 regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]+$",
                 message = "Пароль должен содержать хотя бы одну строчную букву, одну заглавную букву, одну цифру и один спецсимвол (@$!%*?&)."
         )
-        String password,
-
-        @NotNull(message = "Выберите роль!")
-        Role role
+        String password
 ) {
 }

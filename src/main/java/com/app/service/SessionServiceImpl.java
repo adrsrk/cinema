@@ -1,56 +1,30 @@
 package com.app.service;
 
-import com.app.entity.Hall;
-import com.app.entity.Movie;
 import com.app.entity.Session;
-import com.app.exception.HallNotFoundException;
-import com.app.exception.MovieNotFoundException;
 import com.app.exception.SessionNotFoundException;
-import com.app.model.session.SessionRequestDTO;
-import com.app.model.session.SessionResponseDTO;
 import com.app.model.session.SessionUpdateRequestDTO;
-import com.app.repository.HallRepository;
-import com.app.repository.MovieRepository;
 import com.app.repository.SessionRepository;
 import com.app.util.SessionMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
 
 @Service
 @RequiredArgsConstructor
 public class SessionServiceImpl implements SessionService {
 
     private final SessionRepository sessionRepository;
-    private final MovieRepository movieRepository;
-    private final HallRepository hallRepository;
     private final SessionMapper mapper;
 
 
     @Override
-    public SessionResponseDTO createSession(SessionRequestDTO sessionRequestDTO) {
-
-        Movie movie = movieRepository.findById(sessionRequestDTO.movieId())
-                .orElseThrow(() -> new MovieNotFoundException(sessionRequestDTO.movieId()));
-
-        Hall hall = hallRepository.findById(sessionRequestDTO.hallId())
-                .orElseThrow(() -> new HallNotFoundException(sessionRequestDTO.hallId()));
-
-        Session session = mapper.toEntity(sessionRequestDTO);
-        session.setMovie(movie);
-        session.setHall(hall);
-        session.setCreatedAt(LocalDateTime.now());
-
-        Session savedSession = sessionRepository.save(session);
-
-        return mapper.toDto(savedSession);
-    }
-
-    @Override
-    public List<Session> getAllSessions() {
-        return sessionRepository.findAll();
+    public Session createSession(Session session) {
+        return sessionRepository.save(session);
     }
 
     @Override
@@ -74,7 +48,6 @@ public class SessionServiceImpl implements SessionService {
 
         session.setStartTime(sessionUpdateRequestDTO.startTime());
         session.setPrice(sessionUpdateRequestDTO.price());
-        session.setUpdatedAt(LocalDateTime.now());
 
         return sessionRepository.save(session);
     }
@@ -88,4 +61,17 @@ public class SessionServiceImpl implements SessionService {
 
         sessionRepository.deleteById(sessionId);
     }
+
+    @Override
+    public Page<Session> getFilteredSession(Long movieId, Long hallId, LocalDate date, int page, int size) {
+
+        if (date != null) {
+            Instant start = date.atStartOfDay(ZoneOffset.UTC).toInstant();
+            Instant end = date.plusDays(1).atStartOfDay(ZoneOffset.UTC).toInstant();
+            return sessionRepository.findFiltered(movieId, hallId, start, end, PageRequest.of(page, size));
+        }
+        return sessionRepository.findFiltered(movieId, hallId, null, null, PageRequest.of(page, size));
+    }
+
+
 }

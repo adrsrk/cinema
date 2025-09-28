@@ -10,11 +10,13 @@ import com.app.service.SessionService;
 import com.app.util.SessionMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/api/v1/session")
@@ -25,14 +27,18 @@ public class SessionController {
     private final SessionMapper mapper;
 
     @GetMapping
-    public ResponseEntity<List<SessionResponseDTO>> getAllSessions() {
+    public ResponseEntity<Page<SessionResponseDTO>> getFilteredSessions(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(required = false) Long movieId,
+            @RequestParam(required = false) Long hallId,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
+    ) {
 
-        List<SessionResponseDTO> sessions = sessionService.getAllSessions()
-                .stream()
-                .map(mapper :: toDto)
-                .toList();
+        Page<Session> sessions = sessionService.getFilteredSession(movieId, hallId, date, page, size);
+        Page<SessionResponseDTO> sessionByPage = sessions.map(mapper::toDto);
 
-        return ResponseEntity.ok(sessions);
+        return ResponseEntity.ok(sessionByPage);
     }
 
     @GetMapping("/{id}")
@@ -45,11 +51,13 @@ public class SessionController {
     @PostMapping
     public ResponseEntity<MessageCreateResponseDTO> createSession(@Valid @RequestBody SessionRequestDTO sessionRequestDTO) {
 
-        SessionResponseDTO session = sessionService.createSession(sessionRequestDTO);
+        Session session = mapper.toEntity(sessionRequestDTO);
+
+        Session savedSession = sessionService.createSession(session);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(new MessageCreateResponseDTO("Сеанс успешно создан", session.id()));
+                .body(new MessageCreateResponseDTO("Сеанс успешно создан", savedSession.getId()));
     }
 
     @PutMapping("/{id}")

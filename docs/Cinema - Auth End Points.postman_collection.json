@@ -16,7 +16,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"email\": \"testuser@email.kz\",\n  \"password\": \"Test123!\",\n  \"role\": \"ADMIN\"\n}",
+					"raw": "{\n  \"email\": \"testuser@email.kz\",\n  \"password\": \"Test123!\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -50,7 +50,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"email\": \"testuser@email.kz\",\n  \"password\": \"Test123!\"\n}",
+					"raw": "{\n  \"email\": \"admin@cinema.com\",\n  \"password\": \"Admin123!\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -77,11 +77,14 @@
 		{
 			"name": "Refresh",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"refreshToken\" : \"eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInR5cGUiOiJyZWZyZXNoIiwic3ViIjoidGVzdHVzZXJAZW1haWwua3oiLCJpYXQiOjE3NTg1MjkwOTEsImV4cCI6MTc1OTczODY5MX0.T8KZJIVhRguWTxB13CLUEfJJ4k5cgTTk58ZiH_PyOZw\"\n}",
+					"raw": "{\n    \"refreshToken\" : \"eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInR5cGUiOiJyZWZyZXNoIiwic3ViIjoidGVzdHVzZXJAZW1haWwua3oiLCJpYXQiOjE3NTkwMzIzMTgsImV4cCI6MTc2MDI0MTkxOH0.R-uKmiIo15eaJ03NAOKtbuwYPij5LrwZw6Z4ArOjJMk\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -112,7 +115,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"refreshToken\" : \"eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInR5cGUiOiJyZWZyZXNoIiwic3ViIjoidGVzdHVzZXJAZW1haWwua3oiLCJpYXQiOjE3NTg1MjkxMDMsImV4cCI6MTc1OTczODcwM30.lW14wIokQ3iwbqHAq5o0JaFAnFVIrWpK5ayIl2dQN_Y\"\n}",
+					"raw": "{\n    \"refreshToken\" : \"eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInR5cGUiOiJyZWZyZXNoIiwic3ViIjoidGVzdHVzZXJAZW1haWwua3oiLCJpYXQiOjE3NTkwMzIzMjgsImV4cCI6MTc2MDI0MTkyOH0.uCs3Impbe0RCDV0PcZzt7QdGsN18HR7H2YpVyE6XQgk\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"

@@ -14,7 +14,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ0ZXN0dXNlckBlbWFpbC5reiIsImlhdCI6MTc1ODUzODI2NiwiZXhwIjoxNzU4NTQxODY2fQ.A3AlcqN7IiXMMys97_SclzzYFWx0Ahko2Yn0qJRq_Ws",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJhZG1pbkBjaW5lbWEuY29tIiwiaWF0IjoxNzU5MDMyNDI4LCJleHAiOjE3NTkwMzYwMjh9.6LOrJZ6_tn1XHAf0TqZ4n-He9Cv1aYopdlnwRbCuRVE",
 							"type": "string"
 						}
 					]
@@ -22,7 +22,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/movie",
+					"raw": "http://localhost:8080/api/v1/movie?page=0&size=5",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -32,6 +32,16 @@
 						"api",
 						"v1",
 						"movie"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						}
 					]
 				}
 			},
@@ -45,7 +55,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInN1YiI6InRlc3R1c2VyQGVtYWlsLmt6IiwiaWF0IjoxNzU4NTI5MTY0LCJleHAiOjE3NTg1MzI3NjR9.fuNvSZIcgWiQkIzHBlIX1prju5scwi1oGyC9o220RW4",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJhZG1pbkBjaW5lbWEuY29tIiwiaWF0IjoxNzU5MDMyNDI4LCJleHAiOjE3NTkwMzYwMjh9.6LOrJZ6_tn1XHAf0TqZ4n-He9Cv1aYopdlnwRbCuRVE",
 							"type": "string"
 						}
 					]
@@ -77,7 +87,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJ0ZXN0dXNlckBlbWFpbC5reiIsImlhdCI6MTc1ODU2NjQ1NiwiZXhwIjoxNzU4NTcwMDU2fQ.n-J67kdv5hrRS_Y1WoqBr1gSTYCvFb0Xj7ll9ahn-wA",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJhZG1pbkBjaW5lbWEuY29tIiwiaWF0IjoxNzU5MDMyNDI4LCJleHAiOjE3NTkwMzYwMjh9.6LOrJZ6_tn1XHAf0TqZ4n-He9Cv1aYopdlnwRbCuRVE",
 							"type": "string"
 						}
 					]
@@ -86,7 +96,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n \"title\" : \"testtitle1\",\n \"description\" : \"testdescription1\",\n \"duration\" : \"120\",\n \"posterUrl\" : \"https://test.com1\"\n}",
+					"raw": "{\n \"title\" : \"test movie\",\n \"description\" : \"test movie description\",\n \"duration\" : \"120\",\n \"posterUrl\" : \"https://testmovie.com\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -117,7 +127,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInN1YiI6InRlc3R1c2VyQGVtYWlsLmt6IiwiaWF0IjoxNzU4NTI5MTY0LCJleHAiOjE3NTg1MzI3NjR9.fuNvSZIcgWiQkIzHBlIX1prju5scwi1oGyC9o220RW4",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJhZG1pbkBjaW5lbWEuY29tIiwiaWF0IjoxNzU5MDMyNDI4LCJleHAiOjE3NTkwMzYwMjh9.6LOrJZ6_tn1XHAf0TqZ4n-He9Cv1aYopdlnwRbCuRVE",
 							"type": "string"
 						}
 					]
@@ -126,7 +136,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n \"title\" : \"testtitle01\",\n \"description\" : \"testdescription01\",\n \"duration\" : \"120\",\n \"posterUrl\" : \"testposter01\"\n}",
+					"raw": "{\n \"title\" : \"test movie 2\",\n \"description\" : \"test movie description 2\",\n \"duration\" : \"120\",\n \"posterUrl\" : \"https://testmovie2.com\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -134,7 +144,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/movie/1",
+					"raw": "http://localhost:8080/api/v1/movie/11",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -144,7 +154,7 @@
 						"api",
 						"v1",
 						"movie",
-						"1"
+						"11"
 					]
 				}
 			},
@@ -158,7 +168,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInN1YiI6InRlc3R1c2VyQGVtYWlsLmt6IiwiaWF0IjoxNzU4NTI5MTY0LCJleHAiOjE3NTg1MzI3NjR9.fuNvSZIcgWiQkIzHBlIX1prju5scwi1oGyC9o220RW4",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJhZG1pbkBjaW5lbWEuY29tIiwiaWF0IjoxNzU5MDMyNDI4LCJleHAiOjE3NTkwMzYwMjh9.6LOrJZ6_tn1XHAf0TqZ4n-He9Cv1aYopdlnwRbCuRVE",
 							"type": "string"
 						}
 					]
@@ -166,7 +176,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/movie/1",
+					"raw": "http://localhost:8080/api/v1/movie/11",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -176,7 +186,56 @@
 						"api",
 						"v1",
 						"movie",
-						"1"
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchMoviesByTitle",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJhZG1pbkBjaW5lbWEuY29tIiwiaWF0IjoxNzU5MDMyNDI4LCJleHAiOjE3NTkwMzYwMjh9.6LOrJZ6_tn1XHAf0TqZ4n-He9Cv1aYopdlnwRbCuRVE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/movie?query=matrix",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"movie"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "matrix"
+						}
 					]
 				}
 			},

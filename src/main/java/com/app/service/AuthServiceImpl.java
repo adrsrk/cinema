@@ -19,7 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,8 +43,7 @@ public class AuthServiceImpl implements AuthService {
         User user = new User();
         user.setEmail(requestDTO.email());
         user.setPassword(passwordEncoder.encode(requestDTO.password()));
-        user.setRole(requestDTO.role());
-        user.setCreatedAt(LocalDateTime.now());
+        user.setRole(Role.USER);
 
         userRepository.save(user);
     }

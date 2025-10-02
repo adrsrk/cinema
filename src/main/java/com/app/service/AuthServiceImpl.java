@@ -37,7 +37,7 @@ public class AuthServiceImpl implements AuthService {
     public void register(RegisterRequestDTO requestDTO) {
 
         if (userRepository.existsByEmail(requestDTO.email())) {
-            throw new EmailAlreadyExistsException();
+            throw new EmailAlreadyExistsException(requestDTO.email());
         }
 
         User user = new User();

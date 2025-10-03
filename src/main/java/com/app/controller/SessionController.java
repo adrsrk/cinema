@@ -1,12 +1,16 @@
 package com.app.controller;
 
+import com.app.entity.BookingSeat;
 import com.app.entity.Session;
 import com.app.model.MessageCreateResponseDTO;
 import com.app.model.MessageResponseDTO;
+import com.app.model.booking.SeatDTO;
+import com.app.model.booking.TakenSeatsResponseDTO;
 import com.app.model.session.SessionRequestDTO;
 import com.app.model.session.SessionResponseDTO;
 import com.app.model.session.SessionUpdateRequestDTO;
 import com.app.service.SessionService;
+import com.app.util.SeatMapper;
 import com.app.util.SessionMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/session")
@@ -25,6 +30,7 @@ public class SessionController {
 
     private final SessionService sessionService;
     private final SessionMapper mapper;
+    private final SeatMapper seatMapper;
 
     @GetMapping
     public ResponseEntity<Page<SessionResponseDTO>> getFilteredSessions(
@@ -72,5 +78,17 @@ public class SessionController {
 
         sessionService.deleteSession(id);
         return ResponseEntity.ok(new MessageResponseDTO("Сеанс успешно удалён"));
+    }
+
+    @GetMapping("/{id}/seats")
+    public ResponseEntity<TakenSeatsResponseDTO> getTakenSeats(@PathVariable Long id) {
+
+        List<BookingSeat> seats = sessionService.getTakenSeats(id);
+
+        List<SeatDTO> seatDTOS = seats.stream()
+                .map(seatMapper::toDto)
+                .toList();
+
+        return ResponseEntity.ok(new TakenSeatsResponseDTO(id, seatDTOS));
     }
 }

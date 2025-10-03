@@ -50,6 +50,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         .requestMatchers("/api/v1/auth/**").permitAll()
                         .requestMatchers("/api/v1/movie/**", "/api/v1/hall/**", "/api/v1/session/**").hasRole("ADMIN")
+                        .requestMatchers("/api/v1/booking/**").hasRole("USER")
                         .anyRequest().authenticated()
                 )
 

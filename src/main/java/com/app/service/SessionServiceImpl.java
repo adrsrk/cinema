@@ -1,8 +1,11 @@
 package com.app.service;
 
+import com.app.entity.BookingSeat;
 import com.app.entity.Session;
 import com.app.exception.SessionNotFoundException;
 import com.app.model.session.SessionUpdateRequestDTO;
+import com.app.repository.BookingRepository;
+import com.app.repository.BookingSeatRepository;
 import com.app.repository.SessionRepository;
 import com.app.util.SessionMapper;
 import lombok.RequiredArgsConstructor;
@@ -13,14 +16,14 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class SessionServiceImpl implements SessionService {
 
     private final SessionRepository sessionRepository;
-    private final SessionMapper mapper;
-
+    private final BookingSeatRepository bookingSeatRepository;
 
     @Override
     public Session createSession(Session session) {
@@ -71,6 +74,13 @@ public class SessionServiceImpl implements SessionService {
             return sessionRepository.findFiltered(movieId, hallId, start, end, PageRequest.of(page, size));
         }
         return sessionRepository.findFiltered(movieId, hallId, null, null, PageRequest.of(page, size));
+    }
+
+    @Override
+    public List<BookingSeat> getTakenSeats(Long sessionId) {
+
+        Session session = getSessionById(sessionId);
+        return bookingSeatRepository.findBySessionId(sessionId);
     }
 
 

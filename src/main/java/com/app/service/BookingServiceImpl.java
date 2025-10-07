@@ -21,6 +21,7 @@ public class BookingServiceImpl implements BookingService {
     private final SessionRepository repository;
     private final BookingRepository bookingRepository;
     private final BookingSeatRepository bookingSeatRepository;
+    private final SeatUpdateNotifier seatUpdateNotifier;
 
     @Override
     @Transactional
@@ -52,7 +53,16 @@ public class BookingServiceImpl implements BookingService {
 
         booking.setSeats(bookingSeats);
 
-        return bookingRepository.save(booking);
+        Booking savedBooking = bookingRepository.save(booking);
+
+        List<BookingSeat> updateSeats = bookingSeatRepository.findBySessionId(sessionId);
+        List<SeatDTO> takenSeats = updateSeats.stream()
+                .map(bs -> new SeatDTO(bs.getRowNumber(), bs.getSeatNumber()))
+                .toList();
+
+        seatUpdateNotifier.notifySeatUpdate(sessionId, takenSeats);
+
+        return savedBooking;
     }
 
     @Override
